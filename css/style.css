@@ -250,6 +250,61 @@ h2 {
     margin-bottom: 24px;
 }
 
+.mac-source-link {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.mac-source-link a {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 0.95em;
+}
+
+.mac-source-link a:hover {
+    text-decoration: underline;
+}
+
+.mac-download-card {
+    max-width: 520px;
+    margin: 0 auto 24px;
+    border: 1px solid #222;
+    border-radius: 10px;
+    background: #0d0d0d;
+    overflow: hidden;
+}
+
+.mac-download-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.mac-download-row:last-child {
+    border-bottom: none;
+}
+
+.mac-app-name {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 0.95em;
+    min-width: 105px;
+}
+
+.mac-app-desc {
+    color: #908a70;
+    font-size: 0.85em;
+    flex: 1;
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 0.85em;
+    white-space: nowrap;
+}
+
 .sources {
     max-width: 500px;
     margin: 0 auto;

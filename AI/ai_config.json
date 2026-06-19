@@ -1,0 +1,6 @@
+{
+  "api_key": "sk-68855d8344fa4a6c9b611e25f90ba873",
+  "api_url": "https://api.deepseek.com/v1/chat/completions",
+  "model": "deepseek-v4-pro",
+  "system_prompt": "You are a helpful assistant living on the user's desktop as a cute pet."
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>桌面桌宠 - 你的虚拟桌面伙伴</title>
+    <title>桌面桌宠 - 控制台 & 虚拟桌面伙伴</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="images/icon256.png">
     <link rel="shortcut icon" href="images/icon.ico">
@@ -13,7 +13,7 @@
     <header>
         <div class="container">
             <h1>✦ 桌面桌宠</h1>
-            <p class="subtitle">你的虚拟桌面伙伴</p>
+            <p class="subtitle">控制台 + 虚拟桌面伙伴</p>
         </div>
     </header>
 
@@ -22,16 +22,17 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h2>一只会陪伴你的桌面精灵</h2>
-                    <p>它会走路、跳跃、睡觉、做各种可爱动作，还会跟你 AI 聊天。拖拽移动、右键互动，就像养了一只真正的电子宠物。</p>
+                    <p>它会走路、跳跃、睡觉、做各种可爱动作，还会跟你 AI 聊天。<br>
+                    <strong>桌宠控制台</strong> 让你轻松管理一切——启动、设置、余额监控、开机自启。</p>
                     <div class="download-buttons">
-                        <a href="downloads/DesktopPet.exe?v=2" class="btn btn-primary" download>下载 Windows 版</a>
+                        <a href="downloads/PetControl.exe" class="btn btn-primary" download>下载 Windows 控制台</a>
                         <a href="#mac" class="btn btn-secondary">下载 Mac 版</a>
                     </div>
                 </div>
                 <div class="hero-preview">
                     <div class="preview-box">
                         <div class="preview-char">🐾</div>
-                        <p>黑金风格 · AI 对话 · 粒子特效</p>
+                        <p>黑金风格 · AI 对话 · 控制面板</p>
                     </div>
                 </div>
             </div>
@@ -42,6 +43,21 @@
         <div class="container">
             <h2>功能特点</h2>
             <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>桌宠控制台</h3>
+                    <p>启动、停止桌宠，一键设置开机自启，管理所有运行参数。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>AI 余额监控</h3>
+                    <p>实时查看 DeepSeek API 余额和用量，自动刷新，随时掌握消耗。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>参数调节</h3>
+                    <p>调整宠物缩放、移动速度，开关粒子特效与自动行为，即时生效。</p>
+                </div>
                 <div class="feature-card">
                     <div class="feature-icon">👣</div>
                     <h3>自由行走</h3>
@@ -56,21 +72,6 @@
                     <div class="feature-icon">✨</div>
                     <h3>粒子特效</h3>
                     <p>金箔、烟雾、火花、星光等多种粒子效果，视觉华丽。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛏️</div>
-                    <h3>睡觉互动</h3>
-                    <p>点击「睡觉」让它回床上休息，还会冒 Zzz 气泡。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>多种动作</h3>
-                    <p>跳跃、转身、躺下、坐下、眨眼、摇头等丰富动画。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💫</div>
-                    <h3>黑金主题</h3>
-                    <p>高端黑金配色 UI，与桌宠的金色粒子特效完美统一。</p>
                 </div>
             </div>
         </div>
@@ -88,9 +89,9 @@
                 </div>
                 <div class="screenshot-card">
                     <div class="screenshot-placeholder">
-                        <div class="placeholder-chat">AI 对话</div>
+                        <div class="placeholder-chat">控制面板</div>
                     </div>
-                    <p>黑金风格 AI 聊天窗口</p>
+                    <p>桌宠控制台 — 管理一切</p>
                 </div>
             </div>
         </div>
@@ -99,12 +100,29 @@
     <section id="mac">
         <div class="container">
             <h2>Mac 版本</h2>
-            <p class="mac-desc">Mac 版本支持源码运行（需安装 Python 3.12+）</p>
-            <p class="mac-detail">目前通过 Python 源码运行，支持所有核心功能：桌宠动画、AI 对话、右键菜单、粒子特效。</p>
+            <p class="mac-desc">macOS 原生应用 — 无需 Python</p>
+            <p class="mac-detail">双击即用的 .app 包，支持所有核心功能：桌宠动画、AI 对话、控制面板、余额监控。</p>
+
+            <div class="mac-download-card">
+                <div class="mac-download-row">
+                    <span class="mac-app-name">✦ 桌宠控制台</span>
+                    <span class="mac-app-desc">启动、设置、余额监控</span>
+                    <a href="https://github.com/laodamanbanana/erciyuanzhuochong/releases/latest/download/PetControl-mac.zip" class="btn btn-secondary btn-sm">下载 PetControl.app</a>
+                </div>
+                <div class="mac-download-row">
+                    <span class="mac-app-name">✦ 桌面桌宠</span>
+                    <span class="mac-app-desc">宠物本体（控制台可自动启动）</span>
+                    <a href="https://github.com/laodamanbanana/erciyuanzhuochong/releases/latest/download/DesktopPet-mac.zip" class="btn btn-secondary btn-sm">下载 DesktopPet.app</a>
+                </div>
+            </div>
+
             <div class="sources">
-                <h3>源码运行</h3>
+                <h3>源码运行（备选）</h3>
                 <pre><code>pip install pygame requests pyobjc
-python pet_mac.py</code></pre>
+python pet_control.py</code></pre>
+                <p class="mac-source-link">
+                    <a href="https://github.com/laodamanbanana/erciyuanzhuochong/releases" target="_blank">查看所有版本 →</a>
+                </p>
             </div>
         </div>
     </section>
@@ -113,6 +131,10 @@ python pet_mac.py</code></pre>
         <div class="container">
             <h2>使用说明</h2>
             <div class="usage-list">
+                <div class="usage-item">
+                    <span class="usage-key">控制台</span>
+                    <span class="usage-desc">管理启动、设置、余额</span>
+                </div>
                 <div class="usage-item">
                     <span class="usage-key">左键拖拽</span>
                     <span class="usage-desc">移动桌宠位置</span>

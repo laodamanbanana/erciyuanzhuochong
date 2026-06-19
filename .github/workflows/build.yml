@@ -1,0 +1,141 @@
+name: 构建应用
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    name: Windows 打包
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装依赖
+        run: |
+          pip install pyinstaller pillow pygame requests pywin32
+
+      - name: 构建 PetControl.exe
+        run: pyinstaller PetControl.spec --clean
+
+      - name: 构建 DesktopPet.exe
+        run: pyinstaller DesktopPet.spec --clean
+
+      - name: 上传 Windows 构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows-Apps
+          path: dist/*.exe
+
+  build-macos:
+    name: macOS 打包
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装依赖
+        run: |
+          pip install pyinstaller pillow pygame requests pyobjc
+
+      - name: 生成 .icns 图标
+        run: |
+          mkdir -p icon.iconset
+          # 从 PNG 生成各尺寸
+          python -c "
+          from PIL import Image
+          img = Image.open('website/images/icon.png')
+          for s in [16, 32, 64, 128, 256, 512, 1024]:
+              resized = img.resize((s, s), Image.LANCZOS)
+              resized.save(f'icon.iconset/icon_{s}x{s}.png')
+              if s <= 512:
+                  resized.save(f'icon.iconset/icon_{s//2}x{s//2}@2x.png')
+          "
+          # 用 macOS 内置工具转 icns
+          iconutil -c icns icon.iconset -o website/images/icon.icns
+          rm -rf icon.iconset
+
+      - name: 构建 DesktopPet.app
+        run: |
+          pyinstaller --windowed --name "DesktopPet" \
+            --icon website/images/icon.icns \
+            --add-data "素材:素材" \
+            --add-data "AI:AI" \
+            --hidden-import pygame \
+            --hidden-import requests \
+            --hidden-import objc \
+            --clean \
+            pet_mac.py
+
+      - name: 构建 PetControl.app
+        run: |
+          pyinstaller --windowed --name "PetControl" \
+            --icon website/images/icon.icns \
+            --add-data "AI:AI" \
+            --hidden-import requests \
+            --hidden-import tkinter \
+            --clean \
+            pet_control.py
+
+      - name: 上传 macOS 构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS-Apps
+          path: dist/*.app
+
+  create-release:
+    name: 创建 Release
+    needs: [build-windows, build-macos]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 下载 Windows 产物
+        uses: actions/download-artifact@v4
+        with:
+          name: Windows-Apps
+          path: release/
+
+      - name: 下载 macOS 产物
+        uses: actions/download-artifact@v4
+        with:
+          name: macOS-Apps
+          path: release/
+
+      - name: 打包 Mac .app 为 zip
+        run: |
+          cd release
+          zip -r DesktopPet-mac.zip DesktopPet.app
+          zip -r PetControl-mac.zip PetControl.app
+
+      - name: 创建 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: 桌面桌宠 ${{ github.ref_name }}
+          body: |
+            ✦ 桌面桌宠 — 自动构建版本
+
+            ## Windows
+            - `PetControl.exe` — 桌宠控制台（主应用）
+            - `DesktopPet.exe` — 桌宠本体
+
+            ## macOS
+            - `DesktopPet-mac.zip` — 桌宠应用 (.app)
+            - `PetControl-mac.zip` — 控制台应用 (.app)
+
+            下载后解压即可使用，无需安装 Python。
+          files: |
+            release/PetControl.exe
+            release/DesktopPet.exe
+            release/DesktopPet-mac.zip
+            release/PetControl-mac.zip
